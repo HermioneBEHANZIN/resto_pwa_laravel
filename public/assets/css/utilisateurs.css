@@ -1,0 +1,270 @@
+/* =========================================================
+   PAGE UTILISATEURS — Le Gourmet
+   Contenu principal uniquement (Header + Sidebar fournis via
+   assets/css/header-sidebar.css + #hsMount + header-sidebar.js)
+   ========================================================= */
+
+:root {
+  --bg: #EEF1FF;
+  --bordeaux: #7B1C2A;
+  --rouge: #E8112D;
+  --orange: #FF9500;
+  --jaune: #FFBF0D;
+  --vert: #31AA1C;
+  --bleu: #2F80ED;
+  --violet: #8C4AF2;
+  --blanc: #FFFFFF;
+  --muted: #7A7686;
+  --line: rgba(123, 28, 42, 0.08);
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --shadow: 0 8px 26px rgba(123, 28, 42, 0.06);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Playfair Display', serif;
+  color: #2A1E20;
+}
+
+input, select, textarea, button, .form-control, .btn, .dropdown-menu {
+  font-family: 'Playfair Display', serif !important;
+}
+
+/* --- Carte chiffres d'affaires (identique aux autres pages) --- */
+.revenue-card {
+  background: var(--blanc);
+  border: 1.5px solid var(--orange);
+  border-radius: var(--radius-lg);
+  min-height: 100px;
+}
+.revenue-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: rgba(255, 149, 0, 0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--orange); flex-shrink: 0;
+}
+.revenue-info .label { font-size: 13.5px; color: var(--muted); margin-bottom: 4px; }
+.revenue-info .amount { font-size: 28px; font-weight: 700; }
+.revenue-info .amount .unit { font-size: 15px; font-weight: 600; color: var(--muted); margin-left: 4px; }
+.revenue-info .delta { font-size: 13px; color: var(--vert); font-weight: 600; margin-top: 2px; }
+.revenue-date {
+  background: rgba(123, 28, 42, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.revenue-date i { color: var(--bordeaux); }
+
+/* --- Titre --- */
+.page-title { font-size: 34px; font-weight: 700; }
+
+/* --- Cartes statistiques --- */
+.stat-card {
+  background: var(--blanc);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  border-left: 5px solid transparent;
+  padding: 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.stat-card.total    { border-left-color: var(--bordeaux); }
+.stat-card.admins   { border-left-color: var(--orange); }
+.stat-card.serveurs { border-left-color: var(--vert); }
+.stat-card.cuisine  { border-left-color: var(--violet); }
+
+.stat-icon-round {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.stat-card.total .stat-icon-round    { background: rgba(123, 28, 42, 0.10); color: var(--bordeaux); }
+.stat-card.admins .stat-icon-round   { background: rgba(255, 149, 0, 0.14); color: var(--orange); }
+.stat-card.serveurs .stat-icon-round { background: rgba(49, 170, 28, 0.13); color: var(--vert); }
+.stat-card.cuisine .stat-icon-round  { background: rgba(140, 74, 242, 0.13); color: var(--violet); }
+
+.stat-card .label { font-size: 14px; font-weight: 600; color: #2A1E20; margin-bottom: 4px; }
+.stat-card .value { font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.stat-card .sub { font-size: 12px; color: var(--muted); }
+
+/* --- Recherche + statut + bouton ajouter --- */
+.toolbar-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.search-col { flex: 0 0 70%; max-width: 70%; min-width: 240px; }
+
+.search-group {
+  height: 56px;
+  border-radius: 50px !important;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--blanc);
+}
+.search-group .input-group-text { background: var(--blanc); border: none; color: var(--muted); padding-left: 22px; }
+.search-group .form-control { border: none; height: 56px; box-shadow: none; font-size: 14.5px; }
+.search-group .form-control:focus { box-shadow: none; }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(49, 170, 28, 0.13);
+  color: var(--vert);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.status-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vert); }
+
+.btn-add-user {
+  background: var(--bordeaux);
+  color: var(--blanc);
+  border: none;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 15px 26px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.btn-add-user:hover { background: #63161f; color: var(--blanc); }
+
+/* --- Filtres --- */
+.filters-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.filter-chip {
+  background: var(--blanc);
+  border: 1px solid var(--line);
+  color: #2A1E20;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.filter-chip.active {
+  background: var(--bordeaux);
+  color: var(--blanc);
+  border-color: var(--bordeaux);
+}
+
+/* --- Tableau --- */
+.table-card {
+  background: var(--blanc);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.users-table thead th {
+  background: rgba(123, 28, 42, 0.06);
+  color: var(--bordeaux);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 18px 22px;
+  border: none;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.users-table tbody td {
+  padding: 14px 22px;
+  font-size: 14px;
+  vertical-align: middle;
+  border-top: 1px solid var(--line);
+}
+.users-table tbody tr:hover { background: rgba(123, 28, 42, 0.02); }
+
+.user-cell { display: flex; align-items: center; gap: 12px; }
+.user-cell img {
+  width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+}
+.user-cell .name { font-weight: 700; font-size: 14.5px; }
+.user-cell .email { font-size: 12.5px; color: var(--muted); }
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.role-badge.orange { background: rgba(255, 149, 0, 0.14); color: var(--orange); }
+.role-badge.violet { background: rgba(140, 74, 242, 0.13); color: var(--violet); }
+.role-badge.vert    { background: rgba(49, 170, 28, 0.13); color: var(--vert); }
+.role-badge.rouge   { background: rgba(232, 17, 45, 0.12); color: var(--rouge); }
+
+.avail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.avail-badge.actif     { background: rgba(49, 170, 28, 0.13); color: var(--vert); }
+.avail-badge.desactive { background: rgba(232, 17, 45, 0.12); color: var(--rouge); }
+.avail-badge .dot { width: 7px; height: 7px; border-radius: 50%; }
+.avail-badge.actif .dot     { background: var(--vert); }
+.avail-badge.desactive .dot { background: var(--rouge); }
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--blanc);
+}
+.action-btn.edit { color: var(--orange); border-color: rgba(255,149,0,0.35); }
+.action-btn.delete { color: var(--rouge); border-color: rgba(232,17,45,0.3); }
+.action-btn.edit:hover { background: rgba(255,149,0,0.08); }
+.action-btn.delete:hover { background: rgba(232,17,45,0.08); }
+
+/* --- Liste mobile (remplace le tableau) --- */
+.user-card-item {
+  background: var(--blanc);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.user-card-item .head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.user-card-item .head img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.user-card-item .head .name { font-weight: 700; font-size: 15px; }
+.user-card-item .head .email { font-size: 12px; color: var(--muted); }
+.user-card-item .rowline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 13.5px; }
+.user-card-item .rowline .k { color: var(--muted); }
+.user-card-item .actions { display: flex; gap: 10px; margin-top: 12px; }
+.user-card-item .actions .action-btn { flex: 1; justify-content: center; }
+
+/* --- Voir plus --- */
+.see-more-btn {
+  background: none;
+  border: none;
+  color: var(--bordeaux);
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+	@media (max-width: 860px) {
+  .page-title { font-size: 27px; }
+  .toolbar-row { flex-direction: column; align-items: stretch; }
+  .status-pill { justify-content: center; }
+  .btn-add-user { text-align: center; }
+  .revenue-card { flex-direction: column; align-items: flex-start !important; }
+  .revenue-date { margin-left: 0 !important; width: 100%; justify-content: space-between; display: flex; }
+}

@@ -1,0 +1,44 @@
+<?php
+$top_dishes = [
+  ['rank'=>1,'name'=>'Burger Royal','desc'=>'Steak de bœuf, cheddar, salade, tomates, sauce spéciale','price'=>'4 500 FCFA','emoji'=>'🍔','rating'=>'4.9','reviews'=>'128'],
+  ['rank'=>2,'name'=>'Pizza Prestige','desc'=>'Poulet grillé, champignons, poivrons, mozzarella, sauce maison','price'=>'6 000 FCFA','emoji'=>'🍕','rating'=>'4.8','reviews'=>'96'],
+  ['rank'=>3,'name'=>'Poulet Braisé','desc'=>'Poulet mariné aux épices africaines, alloco, sauce champion','price'=>'4 000 FCFA','emoji'=>'🍗','rating'=>'4.8','reviews'=>'87'],
+  ['rank'=>0,'name'=>'Fondant Chocolat','desc'=>'Cœur coulant, glace vanille, sauce chocolat','price'=>'2 500 FCFA','emoji'=>'🍫','rating'=>'4.9','reviews'=>'74'],
+];
+?>
+<section class="py-4">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="section-title">🔥 Les plus commandés</div>
+      <a href="menu.php" class="section-link">Voir tout</a>
+    </div>
+    <div class="row g-3">
+      <?php foreach($top_dishes as $dish): ?>
+      <div class="col-6 col-sm-6 col-md-3">
+        <div class="food-card h-100">
+          <?php if($dish['rank']>0): ?>
+          <span class="badge-rank top<?= $dish['rank'] ?>">Top <?= $dish['rank'] ?></span>
+          <?php endif; ?>
+          <button class="btn-fav">♡</button>
+          <div style="height:150px;background:linear-gradient(135deg,#1A1A1A,#2A2A2A);display:flex;align-items:center;justify-content:center;font-size:4rem;">
+            <?= $dish['emoji'] ?>
+          </div>
+          <div class="food-card-body">
+            <div class="food-card-name"><?= $dish['name'] ?></div>
+            <div class="food-card-desc"><?= $dish['desc'] ?></div>
+            <div class="d-flex align-items-center gap-1 mb-2">
+              <span class="stars">★</span>
+              <span style="font-size:0.75rem;"><?= $dish['rating'] ?></span>
+              <span style="font-size:0.7rem;color:var(--text-muted);">(<?= $dish['reviews'] ?>)</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="food-card-price"><?= $dish['price'] ?></span>
+              <button class="btn-add-circle" onclick="addToCart('<?= $dish['name'] ?>')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
